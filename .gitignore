@@ -1,0 +1,25 @@
+# Temporary files
+.~
+
+#Service Images
+static/services/
+
+# Python compiled byte code
+*.pyc
+
+# SQLite3 database
+*.sqlite3
+
+#IDE Files
+.idea/
+
+# Node modules
+node_modules/
+
+# Bower components
+static/bower_components/
+
+# Staticfiles
+staticfiles/
+
+genkon_app/secret_key.txt
