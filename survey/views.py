@@ -11,6 +11,7 @@ from .forms import SignUpForm
 from pprint import pprint
 from django.contrib.auth import login, authenticate
 from django.shortcuts import render, redirect
+from .models import init_keyword_count
 
 
 """ VIEWS """
@@ -30,6 +31,7 @@ def registration(request):
       user.email = form.cleaned_data.get('email')
       user.save()
       login(request, user)
+      init_keyword_count(user)
       return redirect('index')
   else:
     form = SignUpForm()

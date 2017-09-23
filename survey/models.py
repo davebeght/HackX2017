@@ -28,7 +28,10 @@ class Article_Node(models.Model):
   dependent_node = models.ForeignKey('self', on_delete=models.SET_NULL, null=True)
 
 class Profile_Keyword_Count(models.Model):
-  profile = models.ForeignKey(Profile, on_delete=models.SET_NULL, null=True)
+  user = models.ForeignKey(User, on_delete=models.SET_NULL, null=True)
   keyword = models.ForeignKey(Keyword, on_delete=models.SET_NULL, null=True)
   count = models.FloatField()
 
+def init_keyword_count(user):
+  for keyword in Keyword.objects.all():
+    Profile_Keyword_Count(user=user, keyword=keyword, count=0.0).save()
