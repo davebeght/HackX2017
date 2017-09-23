@@ -57,7 +57,27 @@ def detect_key_phrases(text):
 
 
 def text_to_speech(text):
-  return None
+  ''' text 2 speech section '''
+  headers = get_headers(type="text2speech")
+  # set voice and body settings
+  body = ElementTree.Element('speak', version='1.0')
+  body.set('{http://www.w3.org/XML/1998/namespace}lang', 'de-de')
+  voice = ElementTree.SubElement(body, 'voice')
+  voice.set('{http://www.w3.org/XML/1998/namespace}lang', 'de-DE')
+  voice.set('{http://www.w3.org/XML/1998/namespace}gender', 'Female')
+  voice.set('name', 'Microsoft Server Speech Text to Speech Voice (de-DE, HeddaRUS)')
+  voice.text = text
+
+  # Connect to server to synthesize the wave
+  print("\nConnect to server to synthesize the wave")
+  conn = http.client.HTTPSConnection("speech.platform.bing.com")
+  conn.request("POST", "/synthesize", ElementTree.tostring(body), headers)
+  response = conn.getresponse()
+  print(response.status, response.reason)
+  speech = response.read()
+  conn.close()
+  print("The synthesized wave length: %d" % (len(speech)))
+  return speech
 
 
 

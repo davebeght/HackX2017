@@ -1,10 +1,9 @@
 from HackX2017.utils.api_interface import *
 from HackX2017.utils.nlp_utils import *
 import numpy as np
-import pyaudio
-import wave
-import scipy.io.wavfile as wavf
-import codecs
+import io
+from pydub import AudioSegment
+from pydub.playback import play
 
 
 SAMPLE_TEXT = "Unternehmen in ganz Europa können vorerst aufatmen, die Sorge vor dem „Cliff Edge“-Brexit im März 2019 wäre erstmal gebannt. Doch ist unklar, ob nun wirklich bald die zweite Phase der Brexit-Verhandlungen beginnen kann. Denn zu den drei Kernforderungen der EU blieb May einige Antworten schuldig: Erneut scheute sie davor zurück, die volle Rechnung für den EU-Austritt anzuerkennen. Die liegt laut EU-Kommission bei netto 60 Milliarden Euro. Die Premierministerin versicherte nur, dass Großbritannien alle seine Verpflichtungen erfülle. Über das Ausmaß gibt es weiterhin Streit."
@@ -17,40 +16,18 @@ def prepare_test_text(random=False):
 
 
 def main():
-
   #text_analysis()
-  text_2_speech()
+
+  speech = get_speech(SAMPLE_TEXT)
+  play_speech(speech)
+
   #tokenize()
 
 
 
-def text_2_speech():
+def get_speech(SAMPLE_TEXT):
   ''' text 2 speech section '''
-  headers = get_headers(type="text2speech")
-
-  # set voice and body settings
-
-  body = ElementTree.Element('speak', version='1.0')
-  body.set('{http://www.w3.org/XML/1998/namespace}lang', 'en-us')
-  voice = ElementTree.SubElement(body, 'voice')
-  voice.set('{http://www.w3.org/XML/1998/namespace}lang', 'en-US')
-  voice.set('{http://www.w3.org/XML/1998/namespace}gender', 'Female')
-  voice.set('name', 'Microsoft Server Speech Text to Speech Voice (en-US, ZiraRUS)')
-  voice.text = 'This is a demo to call microsoft text to speech service in Python.'
-
-  # Connect to server to synthesize the wave
-  print("\nConnect to server to synthesize the wave")
-  conn = http.client.HTTPSConnection("speech.platform.bing.com")
-  conn.request("POST", "/synthesize", ElementTree.tostring(body), headers)
-  response = conn.getresponse()
-  print(response.status, response.reason)
-
-  data = response.read()
-  conn.close()
-  print("The synthesized wave length: %d" % (len(data)))
-
-
-  play_audio(data)
+  return text_to_speech(SAMPLE_TEXT)
 
 
 def text_analysis():
@@ -58,7 +35,6 @@ def text_analysis():
   language = detect_language(SAMPLE_TEXT)
   sentiment = detect_sentiment(SAMPLE_TEXT)
   key_phrases = detect_key_phrases(SAMPLE_TEXT)
-
 
   print('Text: %s' % SAMPLE_TEXT)
   print('Language: %s' % language)
@@ -72,26 +48,9 @@ def tokenize():
   print(tokens)
 
 
-def play_audio(f):
-  # instantiate PyAudio
-  p = pyaudio.PyAudio()
-  # open stream
-  stream = p.open(format=p.get_format_from_width(f.getsampwidth()), channels=f.getnchannels(), rate=f.getframerate(),
-                  output=True)
-  # read data
-  data = f.readframes(1024)
-
-  #play stream
-  while data:
-      stream.write(data)
-      data = f.readframes(1024)
-
-  #stop stream
-  stream.stop_stream()
-  stream.close()
-
-  #close PyAudio
-  p.terminate()
+def play_speech(f):
+  audio = AudioSegment.from_file(io.BytesIO(f), format="mp3")
+  play(audio)
 
 
 if __name__ == "__main__":

@@ -28,7 +28,8 @@ def get_headers(type="text_analysis"):
 
     headers['Content-Type'] = 'application/ssml+xml'
     headers['Host'] = 'speech.platform.bing.com'
-    headers['X-Microsoft-OutputFormat'] = 'riff-16khz-16bit-mono-pcm'
+    #headers['X-Microsoft-OutputFormat'] = 'riff-16khz-16bit-mono-pcm'
+    headers['X-Microsoft-OutputFormat'] = 'audio-16khz-128kbitrate-mono-mp3'
     headers['Authorization'] = 'Bearer ' + access_token
     headers["X-Search-AppId"] = "6bea9009055b4182be1080acd3f7fa2f"
     headers["X-Search-ClientID"] = "f185ab4bbbb54f63989a648fc5f41e94"
