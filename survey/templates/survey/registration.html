@@ -1,0 +1,60 @@
+{% extends "base.html" %}
+
+{% block body %}
+
+<div class="container">
+<div class="jumbotron">
+    {% if title %}
+        <h2> {{ title }} </h2>
+    {% endif %}
+    <form action={% url 'registration' %} method="post">
+    {% csrf_token %}
+
+    {% for field in form %}
+        <div class="row" style="padding: 10px">
+
+            {% if field.label == "Einverständnis" %}
+            <div  class="col-xs-10"><p id="terms">Ich habe die <a id="terms2" href="http://generationenkontakt.de/impressum/#privacy-policy">Datenschutzerklärung</a> gelesen und bin einverstanden. </p> </div>
+
+            <div class="col-xs-1">
+                {{ field }}
+            </div>
+
+            {% endif %}
+
+
+            {% if field.label != "Einverständnis" %}
+            <div class="col-xs-4" style="text-align: right">
+                {% if field.field.required %}
+                    {{ field.label_tag }}*
+                {% else %}
+                    {{ field.label_tag }}
+                {% endif%}
+
+            </div>
+            <div class="col-xs-8">
+                   {{ field }}
+            </div>
+            {% endif %}
+            </div>
+
+    {% endfor %}
+    {% if error_message %}
+        <div class="alert alert-danger">
+          {{ error_message }}
+        </div>
+    {% endif %}
+
+             <div class="row">
+                <div class="col-xs-12">
+                    <p><a class="btn btn-lg btn-success" href="{% url 'index' %}" role="button">Zurück</a>
+                    <input type="submit" value="Absenden" class="btn btn-lg btn-success" />
+                </div>
+            </div>
+
+    </form>
+
+</div>
+</div>
+
+{% endblock %}

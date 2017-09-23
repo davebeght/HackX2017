@@ -23,8 +23,6 @@
             {% endif %}
 
 
-
-
           <form method="post" action="{% url 'login' %}">
             {% csrf_token %}
 
@@ -32,7 +30,7 @@
                 <div class="col-xs-4" style="text-align: right">
                          <td>{{ form.username.label_tag }}</td>
                 </div>
-                <div class="col-xs-8">
+                <div class="col-xs-4">
                        <td>{{ form.username }}</td>
                 </div>
             </div>
@@ -51,8 +49,10 @@
 {% endif %}
 
             <div class="row">
-                <div class="col-xs-12" style="align-content: center">
-                     <p><input type="submit" value="Anmelden" class="btn btn-lg btn-success"/>
+                <div class="col-xs-20" style="align-content: center">
+                        <p><a class="btn btn-lg btn-success" href="{% url 'registration' %}" role="button">Registrieren</a>
+                            <p><input type="submit" value="Anmelden" class="btn btn-lg btn-success"/>
+
                      <input type="hidden" name="next" value="" class="btn btn-lg btn-success"/>
                 </div>
             </div>
