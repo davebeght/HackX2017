@@ -121,7 +121,7 @@ STATICFILES_FINDERS = (
 STATICFILES_STORAGE = 'whitenoise.django.GzipManifestStaticFilesStorage'
 
 # Auth setting
-LOGIN_REDIRECT_URL = '/survey/profile_list'
+LOGIN_REDIRECT_URL = '/'
 
 GOOGLE_ANALYTICS_PROPERTY_ID = 'UA-101125770-1'
 GOOGLE_ANALYTICS_ANONYMIZE_IP = True

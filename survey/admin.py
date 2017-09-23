@@ -32,8 +32,6 @@ admin.site.register(Profile_Choice_Selection)
 admin.site.register(Service_Choice_Score)
 """
 
-class KeywordAdmin(admin.ModelAdmin):
-  model = Keyword
 
-admin.site.register(Keyword, KeywordAdmin)
-#admin.site.register(Article_Node)
+admin.site.register(Keyword)
+admin.site.register(Article_Node)

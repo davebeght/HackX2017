@@ -12,6 +12,7 @@ from pprint import pprint
 
 """ VIEWS """
 
+@login_required
 def index(request):
   context = {}
   return render(request, 'survey/index.html', context)
