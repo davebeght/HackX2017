@@ -49,8 +49,10 @@
 {% endif %}
 
             <div class="row">
-                <div class="col-xs-12" style="align-content: center">
-                     <p><input type="submit" value="Anmelden" class="btn btn-lg btn-success"/>
+                <div class="col-xs-20" style="align-content: center">
+                        <p><a class="btn btn-lg btn-success" href="{% url 'registration' %}" role="button">Registrieren</a>
+                            <p><input type="submit" value="Anmelden" class="btn btn-lg btn-success"/>
+
                      <input type="hidden" name="next" value="" class="btn btn-lg btn-success"/>
                 </div>
             </div>
