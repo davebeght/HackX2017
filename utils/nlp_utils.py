@@ -14,8 +14,8 @@ from sklearn import metrics
 
 sentimentUri = 'https://westeurope.api.cognitive.microsoft.com/text/analytics/v2.0/sentiment'
 languageUri = 'https://westeurope.api.cognitive.microsoft.com/text/analytics/v2.0/languages'
-#sentimentUri = 'https://westus.api.cognitive.microsoft.com/text/analytics/v2.0/sentiment'
 keyPhrasesUri = 'https://westeurope.api.cognitive.microsoft.com/text/analytics/v2.0/keyPhrases'
+speechURI = "https://speech.platform.bing.com/synthesize"
 
 
 def tokenize(text):
@@ -37,6 +37,7 @@ def detect_language(text):
 
 
 def detect_sentiment(text):
+  headers = get_headers()
   language = detect_language(text)
   postData2 = json.dumps({"documents": [{"id": "1", "language": language, "text": text}]}).encode('utf-8')
   request2 = urllib.request.Request(sentimentUri, postData2, headers)
@@ -46,12 +47,19 @@ def detect_sentiment(text):
 
 
 def detect_key_phrases(text):
+  headers = get_headers()
   language = detect_language(text)
   postData3 = json.dumps({"documents": [{"id": "1", "language": language, "text": text}]}).encode('utf-8')
   request3 = urllib.request.Request(keyPhrasesUri, postData3, headers)
   response3 = urllib.request.urlopen(request3)
   response3json = json.loads(response3.read().decode('utf-8'))
   return response3json['documents'][0]['keyPhrases']
+
+
+def text_to_speech(text):
+  return None
+
+
 
 def pos_tags(text):
   pass
