@@ -28,8 +28,23 @@
 <script type="text/javascript" src="http://code.jquery.com/jquery-1.7.1.min.js"></script>
 <script>
 
-var treeData //= JSON.parse(WebsiteImport)
-   = {
+
+
+var treeData = d3.json("127.0.0.1./survey/article/?id", function(error, json) {
+if (error) return console.warn(error);
+treeData = json;
+console.log(data);
+//visualizeit();
+});
+
+
+
+/*
+
+
+
+//= JSON.parse(WebsiteImport)
+treeData   = {
       "name": "Rocketman Text","inhalt": "New YorkDonald Trump und die Einreisestopps: An diesem Sonntag laufen Trumps bisherige Einreisebeschränkungen aus. Laut US-Medien könnte die Regierung in diesen Tagen bereits eine neue Regelung verkünden. Der New York Times zufolge könnten mehr Länder als bisher betroffen seinTrump hatte zu Beginn seiner Amtszeit mit einem Einreiseverbot für Menschen aus sechs muslimischen Ländern für Aufsehen und weltweite Proteste gesorgt. Das Gesetz war damals so schlecht geschrieben, dass es nach mehreren Klagen per Gerichtsbeschluss ausgesetzt wurde." , "children": [
         { 
           "name": "Politik-Teil","inhalt": "Der Rocketman rocketet rum2" ,"children": [
@@ -41,6 +56,7 @@ var treeData //= JSON.parse(WebsiteImport)
         { "name": "Wirtschafts-Teil" , "inhalt": "Der Rocketman rocketet rum6"}
       ]
     }; 
+*/
 
 // Set the dimensions and margins of the diagram
 var margin = {top: 90, right: 20, bottom: 20, left: 20},

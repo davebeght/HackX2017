@@ -1,0 +1,12 @@
+{
+      "name": "Rocketman Text","inhalt": "New YorkDonald Trump und die Einreisestopps: An diesem Sonntag laufen Trumps bisherige Einreisebeschränkungen aus. Laut US-Medien könnte die Regierung in diesen Tagen bereits eine neue Regelung verkünden. Der New York Times zufolge könnten mehr Länder als bisher betroffen seinTrump hatte zu Beginn seiner Amtszeit mit einem Einreiseverbot für Menschen aus sechs muslimischen Ländern für Aufsehen und weltweite Proteste gesorgt. Das Gesetz war damals so schlecht geschrieben, dass es nach mehreren Klagen per Gerichtsbeschluss ausgesetzt wurde." , "children": [
+        { 
+          "name": "Politik-Teil","inhalt": "Der Rocketman rocketet rum2" ,"children": [
+            { "name": "US Innenpolitik" , "inhalt": "Der Rocketman rocketet rum3" ,"children": [{"name":"Clinton","inhalt":"Die rocketet nicht rum"},{"name":"Sanders","inhalt":"Der rocketet nicht rum"}]},
+            { "name": "US Außenpolitik" , "inhalt": "Der Rocketman rocketet rum4"},
+            { "name": "US Wirtschaftspolitik" , "inhalt": "Der Rocketman rocketet rum5"}
+          ]
+        },
+        { "name": "Wirtschafts-Teil" , "inhalt": "Der Rocketman rocketet rum6"}
+      ]
+    }
