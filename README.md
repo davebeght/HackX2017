@@ -2,7 +2,7 @@
 
 Tree-based representation of news articles based on Microsoft Azure Cognitive Services - Prototype created during the HackX 2017 Hackathon (Microsoft, Handelsblatt, FlowFact) 
 
-Awarded with the best idea price and best pitch prize
+Awarded with the best innovation prize and best pitch prize
 
 ## Installation
 
